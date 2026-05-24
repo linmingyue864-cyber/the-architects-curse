@@ -720,6 +720,47 @@
     animation-delay: 0.5s;
   }
 
+  /* ===== NEWSPAPER: IMAGE BLOCK ===== */
+  .news-image-block {
+    column-span: all;
+    margin: 1rem 0;
+    break-inside: avoid;
+  }
+
+  .news-image-block img {
+    width: 100%;
+    display: block;
+    filter: grayscale(100%) contrast(1.15) brightness(0.92);
+    border: 1px solid rgba(26,16,8,0.35);
+  }
+
+  .news-image-caption {
+    font-family: 'Special Elite', cursive;
+    font-size: 0.68rem;
+    color: #4a3020;
+    text-align: center;
+    padding: 0.3rem 0.5rem 0;
+    line-height: 1.4;
+    font-style: italic;
+    border-top: 1px solid rgba(26,16,8,0.2);
+  }
+
+  .news-col-image {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1.6rem;
+    align-items: start;
+    margin-top: 0.5rem;
+  }
+
+  .news-col-image .news-image-block {
+    margin-top: 0.2rem;
+  }
+
+  @media (max-width: 600px) {
+    .news-col-image { grid-template-columns: 1fr; }
+  }
+
   /* ===== SECTION: CHARACTERS ===== */
   #characters {
     background: linear-gradient(to bottom, #050505, #080608, #050505);
@@ -1828,6 +1869,67 @@
       <p>The Hargrove mansion has already been dubbed by locals as <strong>"The Dead House."</strong> Neighbors reported hearing low, rhythmic knocking sounds coming from inside the walls for several nights prior to the murders. One resident described it as "the sound of someone measuring… and recalculating."</p>
 
       <p>As of this printing, the Hargrove mansion remains sealed. Several officers who entered the property have already requested psychological leave. Some are refusing to return.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NEWSPAPER #2: ELEVATOR ===== -->
+<section id="newspaper" style="padding-top: 0; background: var(--ink);">
+  <div style="max-width: 900px; margin: 0 auto; padding: 0 0 3rem;">
+    <div class="section-label" style="color: #888; padding: 0 0 2rem;">Press Archive — November 3, 1980</div>
+  </div>
+  <div class="paper-texture" style="transform: rotate(0.4deg);">
+    <div class="confidential-stamp" style="animation-delay: 0.8s;">Open Case</div>
+
+    <div class="newspaper-header">
+      <div class="paper-name">The California Times</div>
+      <div class="paper-meta">
+        <span>San Francisco, November 3, 1980</span>
+        <span>No. 04 — Morning Edition</span>
+        <span>Price: 15¢</span>
+      </div>
+    </div>
+
+    <div class="news-headline">
+      Body Found Crushed Between Elevator Doors<br>in Voss-Designed Tower — Police Baffled
+    </div>
+    <div class="news-byline">
+      By Clara Whitfield, Metro Desk &nbsp;|&nbsp; Financial District Bureau
+    </div>
+
+    <div class="news-col-image">
+      <div>
+        <p class="news-drop-cap" style="font-family:'Special Elite',cursive;font-size:0.82rem;line-height:1.7;color:#2a1a0a;text-align:justify;margin-bottom:0.8rem;">A body was found trapped between two elevator doors on the fourteenth floor of the Meridian Tower early Saturday morning. The victim lay motionless, flattened with a precision that medical examiners say is inconsistent with any mechanical malfunction — the doors, upon inspection, showed no fault, no override, and no evidence of tampering.</p>
+
+        <p style="font-family:'Special Elite',cursive;font-size:0.82rem;line-height:1.7;color:#2a1a0a;text-align:justify;margin-bottom:0.8rem;">Maintenance logs indicate the elevator had not moved in four hours. Surveillance footage from the corridor captured the victim entering the elevator bay at 3:02 a.m. The recording ends eleven seconds later — not cut, not corrupted. Simply gone.</p>
+
+        <div class="news-quote-box">
+          "The doors weren't malfunctioning. There was no jam, no error code, no power surge. The system behaved exactly as designed. That's what's keeping me up at night."
+          <br><br>
+          <strong>— Chief Engineer, Meridian Tower (name withheld by request)</strong>
+        </div>
+
+        <p style="font-family:'Special Elite',cursive;font-size:0.82rem;line-height:1.7;color:#2a1a0a;text-align:justify;margin-bottom:0.8rem;">The Meridian Tower was completed in 1979, designed by Elias Voss — the same architect whose Pacific Heights residence became a massacre site three days prior. Homicide Detective Lena Marsh confirmed that the building schematics are being reviewed as potential evidence.</p>
+      </div>
+
+      <div class="news-image-block" style="margin: 0;">
+        <img src="attached_assets/elevator_crime_scene.png" alt="Elevator crime scene, Meridian Tower, November 1980">
+        <div class="news-image-caption">Fourteenth floor elevator bay, Meridian Tower. Photo: SFPD Evidence Unit, Nov. 3, 1980. Scene remains sealed pending investigation.</div>
+      </div>
+    </div>
+
+    <div class="news-body" style="margin-top: 1.2rem;">
+      <div class="news-quote-box">
+        "I walked past that elevator every day for six months. It never once felt right. Too quiet. Like it was listening."
+        <br><br>
+        <strong>— Anonymous resident, Meridian Tower, Floor 11</strong>
+      </div>
+
+      <p>Voss, who has not been publicly seen since 1978, could not be reached for comment. A representative of his architectural firm declined to speak on the record, stating only that <em>"the building was constructed to specification."</em> Those specifications, investigators now believe, may have been designed to kill.</p>
+
+      <p>The victim has been identified as Raymond Cross, 41, a financial analyst with no known enemies and no documented connection to either the Hargrove family or Elias Voss. Investigators are examining the possibility that the building itself selects its victims — a theory that, as of this printing, no one is willing to say aloud on the record.</p>
+
+      <p>The Meridian Tower remains open. Residents have been advised there is no ongoing threat. Several have already moved out.</p>
     </div>
   </div>
 </section>
