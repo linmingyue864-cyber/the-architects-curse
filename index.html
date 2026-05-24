@@ -1172,6 +1172,202 @@
     clip-path: inset(50% 0 0 0);
   }
 
+  /* ===== BLUEPRINT SECTION ===== */
+  #blueprint {
+    background: #000;
+    padding: 6rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #blueprint::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 60%, rgba(10,22,40,0.6) 0%, #000 70%);
+    pointer-events: none;
+  }
+
+  .blueprint-reveal-wrap {
+    max-width: 860px;
+    margin: 3rem auto 0;
+    position: relative;
+  }
+
+  .blueprint-img-frame {
+    position: relative;
+    border: 1px solid rgba(74,158,255,0.25);
+    padding: 6px;
+    background: #000;
+    box-shadow:
+      0 0 60px rgba(74,158,255,0.08),
+      0 0 0 1px rgba(139,0,0,0.15),
+      inset 0 0 40px rgba(0,0,0,0.8);
+  }
+
+  .blueprint-img-frame img {
+    width: 100%;
+    display: block;
+    filter: sepia(0.08) contrast(1.1) brightness(0.92);
+    transition: filter 0.6s ease;
+  }
+
+  .blueprint-img-frame:hover img {
+    filter: sepia(0) contrast(1.15) brightness(1.0);
+  }
+
+  .blueprint-overlay {
+    position: absolute;
+    inset: 6px;
+    background: linear-gradient(
+      to bottom,
+      transparent 60%,
+      rgba(0,0,0,0.7) 85%,
+      rgba(0,0,0,0.95) 100%
+    );
+    pointer-events: none;
+  }
+
+  .blueprint-scanline-overlay {
+    position: absolute;
+    inset: 6px;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(0,0,0,0.04) 3px,
+      rgba(0,0,0,0.04) 4px
+    );
+    pointer-events: none;
+  }
+
+  .blueprint-vignette {
+    position: absolute;
+    inset: 6px;
+    box-shadow: inset 0 0 80px rgba(0,0,0,0.6);
+    pointer-events: none;
+  }
+
+  .blueprint-classified-bar {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    right: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .bp-stamp {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(0.55rem, 1.5vw, 0.8rem);
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    color: rgba(139,0,0,0.85);
+    border: 2px solid rgba(139,0,0,0.7);
+    padding: 0.25rem 0.6rem;
+    text-transform: uppercase;
+    transform: rotate(-3deg);
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(2px);
+    animation: pulse-glow 4s ease-in-out infinite;
+  }
+
+  .bp-stamp.right {
+    transform: rotate(4deg);
+    border-color: rgba(212,160,23,0.7);
+    color: rgba(212,160,23,0.85);
+  }
+
+  .blueprint-caption {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+  }
+
+  .blueprint-caption h4 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    color: var(--parchment);
+    text-shadow: 0 0 20px rgba(0,0,0,1);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.3rem;
+  }
+
+  .blueprint-caption p {
+    font-family: 'Special Elite', cursive;
+    font-size: clamp(0.6rem, 1.5vw, 0.75rem);
+    color: rgba(200,185,154,0.6);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+  }
+
+  .blueprint-corner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-color: rgba(74,158,255,0.4);
+    border-style: solid;
+  }
+
+  .blueprint-corner.tl { top: 0; left: 0; border-width: 1px 0 0 1px; }
+  .blueprint-corner.tr { top: 0; right: 0; border-width: 1px 1px 0 0; }
+  .blueprint-corner.bl { bottom: 0; left: 0; border-width: 0 0 1px 1px; }
+  .blueprint-corner.br { bottom: 0; right: 0; border-width: 0 1px 1px 0; }
+
+  .blueprint-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    margin-top: 1px;
+    background: rgba(74,158,255,0.1);
+  }
+
+  @media (max-width: 600px) {
+    .blueprint-details { grid-template-columns: 1fr; }
+  }
+
+  .bp-detail-cell {
+    background: rgba(5,5,5,0.95);
+    padding: 0.8rem 1.2rem;
+    border: 1px solid rgba(74,158,255,0.08);
+  }
+
+  .bp-detail-label {
+    font-family: 'Special Elite', cursive;
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    color: rgba(74,158,255,0.5);
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .bp-detail-value {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.82rem;
+    color: var(--parchment);
+    line-height: 1.4;
+  }
+
+  .bp-detail-value.blood { color: var(--blood-bright); }
+
+  .blueprint-annotation {
+    margin-top: 2rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .blueprint-annotation p {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    line-height: 1.9;
+    color: #6a5a40;
+  }
+
   /* ===== RATING SECTION ===== */
   #rating {
     background: linear-gradient(to bottom, #050505, #080608);
@@ -1803,6 +1999,75 @@
   </div>
 </section>
 
+<!-- ===== BLUEPRINT SECTION ===== -->
+<section id="blueprint">
+  <div class="section-inner">
+    <div class="section-label" style="justify-content: center;">Crime Scene Evidence</div>
+    <h2 class="section-title" style="text-align: center;">The Hargrove Residence.<br>As designed by Elias Voss.</h2>
+
+    <div class="blueprint-reveal-wrap float-anim">
+      <div class="blueprint-img-frame">
+        <img
+          src="/__mockup/images/blueprint-hargrove.jpg"
+          alt="The Hargrove Residence — Architectural Blueprint by Elias Voss — Evidence Exhibit A"
+          loading="lazy"
+        >
+        <div class="blueprint-overlay"></div>
+        <div class="blueprint-scanline-overlay"></div>
+        <div class="blueprint-vignette"></div>
+
+        <div class="blueprint-classified-bar">
+          <div class="bp-stamp">Evidence — Exhibit A</div>
+          <div class="bp-stamp right">Case № 1980-047</div>
+        </div>
+
+        <div class="blueprint-caption">
+          <h4>The Hargrove Residence</h4>
+          <p>Designed by Elias Voss, Architect &nbsp;·&nbsp; 2845 Broadway St, San Francisco &nbsp;·&nbsp; 8,200 sq ft</p>
+        </div>
+      </div>
+
+      <div class="blueprint-corner tl"></div>
+      <div class="blueprint-corner tr"></div>
+      <div class="blueprint-corner bl"></div>
+      <div class="blueprint-corner br"></div>
+
+      <div class="blueprint-details">
+        <div class="bp-detail-cell">
+          <div class="bp-detail-label">Designation</div>
+          <div class="bp-detail-value">Main Floor Plan &amp; Second Floor Plan &amp; Elevation View</div>
+        </div>
+        <div class="bp-detail-cell">
+          <div class="bp-detail-label">Architect</div>
+          <div class="bp-detail-value">Elias Voss (whereabouts unknown)</div>
+        </div>
+        <div class="bp-detail-cell">
+          <div class="bp-detail-label">Status</div>
+          <div class="bp-detail-value blood">SEALED — Crime Scene · Do Not Enter</div>
+        </div>
+        <div class="bp-detail-cell">
+          <div class="bp-detail-label">Occupied</div>
+          <div class="bp-detail-value">19 days before the massacre</div>
+        </div>
+        <div class="bp-detail-cell">
+          <div class="bp-detail-label">Anomalies Noted</div>
+          <div class="bp-detail-value blood">Blood Axis · Trap Corridor · Sleeping Fracture · Chokepoint</div>
+        </div>
+        <div class="bp-detail-cell">
+          <div class="bp-detail-label">Classification</div>
+          <div class="bp-detail-value blood">Active Investigation · Restricted Access</div>
+        </div>
+      </div>
+
+      <div class="blueprint-annotation">
+        <p>
+          Investigators noted the room labels on Voss's original blueprints did not match any standard architectural terminology. Terms like "Blood Axis," "Trap Corridor," and "Sleeping Fracture" appear to be deliberate — not errors. One detective wrote in his report: <em>"The house wasn't designed for people to live in. It was designed for something else entirely."</em>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== AGENT REVIEW ===== -->
 <section id="rating">
   <div class="section-inner">
@@ -1832,25 +2097,25 @@
     <div class="trailer-frame-wrap float-anim">
       <div class="trailer-border">
         <div class="trailer-inner">
-          <!-- Loading state shown while trailer is being generated -->
-          <div class="trailer-loading" id="trailerLoading">
-            <div class="loading-eye">
-              <div class="loading-ring"></div>
-            </div>
-            <div class="loading-text">Rendering trailer<span class="loading-dots"></span></div>
-            <div style="font-family:'IM Fell English',serif; font-style:italic; font-size:0.8rem; color:#333; max-width:300px; text-align:center; line-height:1.6;">
-              The trailer is being generated.<br>It will appear here once complete.
-            </div>
-          </div>
-          <!-- Trailer iframe — mockup-sandbox preview of the video component -->
-          <iframe
-            class="trailer-iframe"
+          <!-- MP4 Trailer -->
+          <video
             id="trailerFrame"
-            src="/__mockup/preview/VideoTemplate"
-            allow="autoplay"
-            style="opacity:0; transition: opacity 0.8s ease;"
-            title="THE ARCHITECT'S CURSE — Official Book Trailer"
-          ></iframe>
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="auto"
+            style="width:100%; height:100%; object-fit:cover; display:block;"
+          >
+            <source src="/__mockup/videos/trailer.mp4" type="video/mp4">
+          </video>
+          <!-- Cinematic letterbox bars -->
+          <div style="position:absolute;top:0;left:0;right:0;height:6%;background:#000;pointer-events:none;"></div>
+          <div style="position:absolute;bottom:0;left:0;right:0;height:6%;background:#000;pointer-events:none;"></div>
+          <!-- Subtle vignette -->
+          <div style="position:absolute;inset:0;box-shadow:inset 0 0 80px rgba(0,0,0,0.7);pointer-events:none;"></div>
+          <!-- Scanline overlay on video -->
+          <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.06) 3px,rgba(0,0,0,0.06) 4px);pointer-events:none;"></div>
         </div>
       </div>
       <div class="trailer-corner tl"></div>
@@ -2265,21 +2530,14 @@ const excerptObserver = new IntersectionObserver(entries => {
 const excerptFrame = document.querySelector('.excerpt-frame');
 if (excerptFrame) excerptObserver.observe(excerptFrame);
 
-// ===== TRAILER IFRAME LOAD =====
-const trailerFrame = document.getElementById('trailerFrame');
-const trailerLoading = document.getElementById('trailerLoading');
-if (trailerFrame) {
-  trailerFrame.addEventListener('load', () => {
-    trailerFrame.style.opacity = '1';
-    if (trailerLoading) trailerLoading.classList.add('hidden');
+// ===== TRAILER VIDEO UNMUTE ON CLICK =====
+const trailerVideo = document.getElementById('trailerFrame');
+if (trailerVideo) {
+  trailerVideo.addEventListener('click', () => {
+    trailerVideo.muted = !trailerVideo.muted;
   });
-  // Fallback: if already cached and load event already fired
-  setTimeout(() => {
-    if (trailerFrame.contentDocument && trailerFrame.contentDocument.readyState === 'complete') {
-      trailerFrame.style.opacity = '1';
-      if (trailerLoading) trailerLoading.classList.add('hidden');
-    }
-  }, 2000);
+  trailerVideo.title = 'Click to toggle sound';
+  trailerVideo.style.cursor = 'pointer';
 }
 </script>
 </body>
