@@ -1214,6 +1214,227 @@
     margin-top: 1rem;
     text-transform: uppercase;
   }
+
+  /* ===== AUDIO TOGGLE ===== */
+  .audio-toggle {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1000;
+    background: rgba(10,5,3,0.9);
+    border: 1px solid rgba(139,0,0,0.4);
+    color: var(--parchment);
+    font-family: 'Special Elite', cursive;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    padding: 0.7rem 1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  }
+
+  .audio-toggle:hover { border-color: var(--blood); color: var(--blood-bright); }
+
+  .audio-icon {
+    width: 16px;
+    height: 16px;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .audio-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 14px;
+  }
+
+  .audio-bar {
+    width: 3px;
+    background: var(--blood);
+    border-radius: 1px;
+    transform-origin: bottom;
+  }
+
+  @keyframes bar1 { 0%,100%{height:4px} 50%{height:12px} }
+  @keyframes bar2 { 0%,100%{height:8px} 50%{height:4px} }
+  @keyframes bar3 { 0%,100%{height:12px} 50%{height:6px} }
+  @keyframes bar4 { 0%,100%{height:5px} 50%{height:10px} }
+
+  .audio-toggle.playing .audio-bar:nth-child(1) { animation: bar1 0.8s ease-in-out infinite; }
+  .audio-toggle.playing .audio-bar:nth-child(2) { animation: bar2 0.8s ease-in-out infinite 0.1s; }
+  .audio-toggle.playing .audio-bar:nth-child(3) { animation: bar3 0.8s ease-in-out infinite 0.2s; }
+  .audio-toggle.playing .audio-bar:nth-child(4) { animation: bar4 0.8s ease-in-out infinite 0.15s; }
+
+  /* ===== TRAILER SECTION ===== */
+  #trailer {
+    background: #000;
+    padding: 6rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #trailer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 49px, rgba(30,58,95,0.07) 49px, rgba(30,58,95,0.07) 50px),
+      repeating-linear-gradient(90deg, transparent, transparent 49px, rgba(30,58,95,0.07) 49px, rgba(30,58,95,0.07) 50px);
+    pointer-events: none;
+  }
+
+  .trailer-frame-wrap {
+    max-width: 900px;
+    margin: 3rem auto 0;
+    position: relative;
+  }
+
+  .trailer-border {
+    border: 1px solid rgba(139,0,0,0.4);
+    padding: 4px;
+    background: #000;
+    box-shadow: 0 0 60px rgba(139,0,0,0.15), 0 0 120px rgba(0,0,0,0.8);
+    animation: pulse-glow 5s ease-in-out infinite;
+  }
+
+  .trailer-inner {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    overflow: hidden;
+  }
+
+  .trailer-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  .trailer-loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background:
+      linear-gradient(rgba(3,3,3,0.97), rgba(5,3,3,0.97)),
+      repeating-linear-gradient(0deg, transparent, transparent 24px, rgba(30,58,95,0.15) 24px, rgba(30,58,95,0.15) 25px),
+      repeating-linear-gradient(90deg, transparent, transparent 24px, rgba(30,58,95,0.15) 24px, rgba(30,58,95,0.15) 25px);
+    z-index: 2;
+    gap: 1.5rem;
+    transition: opacity 0.8s ease;
+  }
+
+  .trailer-loading.hidden { opacity: 0; pointer-events: none; }
+
+  .loading-eye {
+    width: 60px;
+    height: 60px;
+    border: 1px solid rgba(139,0,0,0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  .loading-eye::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background: var(--blood);
+    border-radius: 50%;
+    animation: heartbeat 2s ease-in-out infinite;
+  }
+
+  @keyframes spin-ring {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .loading-ring {
+    position: absolute;
+    inset: -8px;
+    border: 1px solid transparent;
+    border-top-color: var(--blood);
+    border-radius: 50%;
+    animation: spin-ring 2s linear infinite;
+  }
+
+  .loading-text {
+    font-family: 'Special Elite', cursive;
+    font-size: 0.75rem;
+    letter-spacing: 0.4em;
+    color: #555;
+    text-transform: uppercase;
+  }
+
+  .loading-dots::after {
+    content: '...';
+    animation: dots 1.5s steps(4, end) infinite;
+  }
+
+  @keyframes dots {
+    0% { content: ''; }
+    25% { content: '.'; }
+    50% { content: '..'; }
+    75% { content: '...'; }
+    100% { content: ''; }
+  }
+
+  .trailer-corner {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-color: var(--blood);
+    border-style: solid;
+    opacity: 0.6;
+  }
+
+  .trailer-corner.tl { top: -5px; left: -5px; border-width: 1px 0 0 1px; }
+  .trailer-corner.tr { top: -5px; right: -5px; border-width: 1px 1px 0 0; }
+  .trailer-corner.bl { bottom: -5px; left: -5px; border-width: 0 0 1px 1px; }
+  .trailer-corner.br { bottom: -5px; right: -5px; border-width: 0 1px 1px 0; }
+
+  .trailer-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    padding: 0 0.2rem;
+  }
+
+  .trailer-label span {
+    font-family: 'Special Elite', cursive;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: #444;
+    text-transform: uppercase;
+  }
+
+  .trailer-label .rec {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--blood);
+  }
+
+  .rec-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--blood);
+    border-radius: 50%;
+    animation: heartbeat 1.5s ease-in-out infinite;
+  }
 </style>
 </head>
 <body>
@@ -1222,6 +1443,17 @@
 
 <!-- Cursor dot -->
 <div class="cursor-dot" id="cursorDot"></div>
+
+<!-- Audio Toggle -->
+<button class="audio-toggle" id="audioToggle" title="Toggle ambient sound">
+  <div class="audio-bars">
+    <div class="audio-bar" style="height:4px"></div>
+    <div class="audio-bar" style="height:8px"></div>
+    <div class="audio-bar" style="height:12px"></div>
+    <div class="audio-bar" style="height:5px"></div>
+  </div>
+  <span id="audioLabel">Enable Sound</span>
+</button>
 
 <!-- ===== HERO ===== -->
 <section id="hero">
@@ -1591,6 +1823,48 @@
   </div>
 </section>
 
+<!-- ===== TRAILER ===== -->
+<section id="trailer">
+  <div class="section-inner">
+    <div class="section-label" style="justify-content: center;">Official Book Trailer</div>
+    <h2 class="section-title" style="text-align: center;">Watch the Trailer of the eBook.</h2>
+
+    <div class="trailer-frame-wrap float-anim">
+      <div class="trailer-border">
+        <div class="trailer-inner">
+          <!-- Loading state shown while trailer is being generated -->
+          <div class="trailer-loading" id="trailerLoading">
+            <div class="loading-eye">
+              <div class="loading-ring"></div>
+            </div>
+            <div class="loading-text">Rendering trailer<span class="loading-dots"></span></div>
+            <div style="font-family:'IM Fell English',serif; font-style:italic; font-size:0.8rem; color:#333; max-width:300px; text-align:center; line-height:1.6;">
+              The trailer is being generated.<br>It will appear here once complete.
+            </div>
+          </div>
+          <!-- Trailer iframe — mockup-sandbox preview of the video component -->
+          <iframe
+            class="trailer-iframe"
+            id="trailerFrame"
+            src="/__mockup/preview/VideoTemplate"
+            allow="autoplay"
+            style="opacity:0; transition: opacity 0.8s ease;"
+            title="THE ARCHITECT'S CURSE — Official Book Trailer"
+          ></iframe>
+        </div>
+      </div>
+      <div class="trailer-corner tl"></div>
+      <div class="trailer-corner tr"></div>
+      <div class="trailer-corner bl"></div>
+      <div class="trailer-corner br"></div>
+      <div class="trailer-label">
+        <span>The Architect's Curse — Book Trailer · 2026</span>
+        <span class="rec"><div class="rec-dot"></div> Cinematic Horror</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== FINAL CTA ===== -->
 <section id="final-cta">
   <div class="final-bg"></div>
@@ -1703,17 +1977,242 @@ function randomFlicker() {
 }
 setTimeout(randomFlicker, 4000);
 
-// ===== AMBIENT SOUND HINT =====
+// ===== AMBIENT HORROR AUDIO ENGINE (Web Audio API) =====
+let audioCtx = null;
+let masterGain = null;
+let audioPlaying = false;
+let scheduledNodes = [];
+
+function createAudioContext() {
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  masterGain = audioCtx.createGain();
+  masterGain.gain.setValueAtTime(0, audioCtx.currentTime);
+  masterGain.gain.linearRampToValueAtTime(0.6, audioCtx.currentTime + 3);
+  masterGain.connect(audioCtx.destination);
+}
+
+// Deep rumble — sub-bass drone
+function createDrone(freq, gainVal, detune = 0) {
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  const filter = audioCtx.createBiquadFilter();
+
+  osc.type = 'sawtooth';
+  osc.frequency.value = freq;
+  osc.detune.value = detune;
+
+  filter.type = 'lowpass';
+  filter.frequency.value = 180;
+  filter.Q.value = 2;
+
+  gain.gain.value = gainVal;
+
+  osc.connect(filter);
+  filter.connect(gain);
+  gain.connect(masterGain);
+  osc.start();
+  scheduledNodes.push(osc, gain, filter);
+
+  // Slow LFO tremolo
+  const lfo = audioCtx.createOscillator();
+  const lfoGain = audioCtx.createGain();
+  lfo.frequency.value = 0.05 + Math.random() * 0.08;
+  lfoGain.gain.value = gainVal * 0.3;
+  lfo.connect(lfoGain);
+  lfoGain.connect(gain.gain);
+  lfo.start();
+  scheduledNodes.push(lfo, lfoGain);
+}
+
+// Eerie high-pitched whine (distant wail)
+function createWail() {
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  const filter = audioCtx.createBiquadFilter();
+
+  osc.type = 'sine';
+  osc.frequency.value = 320;
+  filter.type = 'bandpass';
+  filter.frequency.value = 340;
+  filter.Q.value = 15;
+
+  gain.gain.value = 0;
+  gain.gain.setValueAtTime(0, audioCtx.currentTime);
+
+  // Slow swell in and out
+  function scheduleWailSwell() {
+    const now = audioCtx.currentTime;
+    const delay = 8 + Math.random() * 20;
+    const duration = 4 + Math.random() * 6;
+    const peak = 0.04 + Math.random() * 0.03;
+    gain.gain.setValueAtTime(0, now + delay);
+    gain.gain.linearRampToValueAtTime(peak, now + delay + duration * 0.4);
+    gain.gain.linearRampToValueAtTime(0, now + delay + duration);
+    setTimeout(scheduleWailSwell, (delay + duration + 2) * 1000);
+  }
+  scheduleWailSwell();
+
+  osc.connect(filter);
+  filter.connect(gain);
+  gain.connect(masterGain);
+  osc.start();
+  scheduledNodes.push(osc, gain, filter);
+}
+
+// Knocking / creaking — rhythmic architectural horror
+function scheduleKnock() {
+  if (!audioPlaying) return;
+  const delay = 4000 + Math.random() * 12000;
+  setTimeout(() => {
+    if (!audioPlaying || !audioCtx) return;
+    const buffer = audioCtx.createBuffer(1, audioCtx.sampleRate * 0.15, audioCtx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < data.length; i++) {
+      data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / data.length, 4) * 0.8;
+    }
+    const src = audioCtx.createBufferSource();
+    const gain = audioCtx.createGain();
+    const filter = audioCtx.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.value = 250;
+    gain.gain.value = 0.15 + Math.random() * 0.1;
+    src.buffer = buffer;
+    src.connect(filter);
+    filter.connect(gain);
+    gain.connect(masterGain);
+    src.start();
+
+    // Sometimes do a double-knock
+    if (Math.random() > 0.5) {
+      const src2 = audioCtx.createBufferSource();
+      const gain2 = audioCtx.createGain();
+      gain2.gain.value = gain.gain.value * 0.7;
+      src2.buffer = buffer;
+      src2.connect(filter);
+      filter.connect(gain2);
+      gain2.connect(masterGain);
+      src2.start(audioCtx.currentTime + 0.22);
+    }
+    scheduleKnock();
+  }, delay);
+}
+
+// White noise wind layer
+function createWindNoise() {
+  const bufferSize = audioCtx.sampleRate * 4;
+  const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+  const data = buffer.getChannelData(0);
+  for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
+
+  const src = audioCtx.createBufferSource();
+  src.buffer = buffer;
+  src.loop = true;
+
+  const filter = audioCtx.createBiquadFilter();
+  filter.type = 'bandpass';
+  filter.frequency.value = 600;
+  filter.Q.value = 0.3;
+
+  const gain = audioCtx.createGain();
+  gain.gain.value = 0.025;
+
+  src.connect(filter);
+  filter.connect(gain);
+  gain.connect(masterGain);
+  src.start();
+  scheduledNodes.push(src, filter, gain);
+}
+
+// Subtle breath / heartbeat pulse
+function createHeartbeat() {
+  function beat() {
+    if (!audioPlaying || !audioCtx) return;
+    const t = audioCtx.currentTime;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.frequency.value = 40;
+    osc.type = 'sine';
+    gain.gain.setValueAtTime(0, t);
+    gain.gain.linearRampToValueAtTime(0.12, t + 0.04);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.25);
+    osc.connect(gain);
+    gain.connect(masterGain);
+    osc.start(t);
+    osc.stop(t + 0.3);
+
+    // Double thump
+    setTimeout(() => {
+      if (!audioPlaying || !audioCtx) return;
+      const t2 = audioCtx.currentTime;
+      const osc2 = audioCtx.createOscillator();
+      const gain2 = audioCtx.createGain();
+      osc2.frequency.value = 38;
+      osc2.type = 'sine';
+      gain2.gain.setValueAtTime(0, t2);
+      gain2.gain.linearRampToValueAtTime(0.08, t2 + 0.04);
+      gain2.gain.exponentialRampToValueAtTime(0.001, t2 + 0.2);
+      osc2.connect(gain2);
+      gain2.connect(masterGain);
+      osc2.start(t2);
+      osc2.stop(t2 + 0.25);
+    }, 300);
+
+    setTimeout(beat, 1800 + Math.random() * 400);
+  }
+  setTimeout(beat, 3000);
+}
+
+function startAmbientAudio() {
+  if (!audioCtx) createAudioContext();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+
+  createDrone(28, 0.3);
+  createDrone(42, 0.2, -7);
+  createDrone(56, 0.1, 12);
+  createWail();
+  createWindNoise();
+  createHeartbeat();
+  scheduleKnock();
+
+  audioPlaying = true;
+  const btn = document.getElementById('audioToggle');
+  const lbl = document.getElementById('audioLabel');
+  if (btn) btn.classList.add('playing');
+  if (lbl) lbl.textContent = 'Silence';
+}
+
+function stopAmbientAudio() {
+  if (masterGain) {
+    masterGain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 1.5);
+  }
+  audioPlaying = false;
+  setTimeout(() => {
+    scheduledNodes.forEach(node => { try { node.disconnect(); } catch(e){} });
+    scheduledNodes = [];
+    if (audioCtx) { audioCtx.close(); audioCtx = null; masterGain = null; }
+  }, 2000);
+
+  const btn = document.getElementById('audioToggle');
+  const lbl = document.getElementById('audioLabel');
+  if (btn) btn.classList.remove('playing');
+  if (lbl) lbl.textContent = 'Enable Sound';
+}
+
+document.getElementById('audioToggle').addEventListener('click', () => {
+  if (!audioPlaying) startAmbientAudio();
+  else stopAmbientAudio();
+});
+
+// Subtle visual pulse on scroll (kept lightweight)
 let hasScrolled = false;
 window.addEventListener('scroll', () => {
   if (!hasScrolled && window.scrollY > 100) {
     hasScrolled = true;
-    // Subtle visual pulse on first scroll
     document.body.style.transition = 'background 0.3s';
     document.body.style.background = '#0a0202';
     setTimeout(() => { document.body.style.background = '#050505'; }, 300);
   }
-}, { once: false });
+});
 
 // ===== SMOOTH SCROLL =====
 document.querySelectorAll('a[href^="#"]').forEach(a => {
@@ -1765,6 +2264,23 @@ const excerptObserver = new IntersectionObserver(entries => {
 }, { threshold: 0.3 });
 const excerptFrame = document.querySelector('.excerpt-frame');
 if (excerptFrame) excerptObserver.observe(excerptFrame);
+
+// ===== TRAILER IFRAME LOAD =====
+const trailerFrame = document.getElementById('trailerFrame');
+const trailerLoading = document.getElementById('trailerLoading');
+if (trailerFrame) {
+  trailerFrame.addEventListener('load', () => {
+    trailerFrame.style.opacity = '1';
+    if (trailerLoading) trailerLoading.classList.add('hidden');
+  });
+  // Fallback: if already cached and load event already fired
+  setTimeout(() => {
+    if (trailerFrame.contentDocument && trailerFrame.contentDocument.readyState === 'complete') {
+      trailerFrame.style.opacity = '1';
+      if (trailerLoading) trailerLoading.classList.add('hidden');
+    }
+  }, 2000);
+}
 </script>
 </body>
 </html>
